@@ -381,7 +381,7 @@ function gameLoop(currentTime) {
   }
 
   // Update bullets
-  updateBullets(GAME_WIDTH, GAME_HEIGHT)
+  updateBullets(GAME_WIDTH, GAME_HEIGHT, enemies)
 
   // Update enemy bullets
   for (let i = enemyBullets.length - 1; i >= 0; i--) {

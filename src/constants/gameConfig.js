@@ -11,6 +11,7 @@ export const PLAYER_CONFIG = {
   dashCooldown: 1000
 }
 
+// Bullet patterns: normal, wave, spiral, homing, burst
 export const WEAPON_TYPES = {
   candyCane: {
     id: 'candyCane',
@@ -21,8 +22,24 @@ export const WEAPON_TYPES = {
     bulletSpeed: 12,
     bulletCount: 1,
     spread: 0,
+    pattern: 'normal',
     color: '#ff4444',
     unlockLevel: 1
+  },
+  waveShot: {
+    id: 'waveShot',
+    name: '波動キャンディ',
+    description: '波状に揺れながら飛ぶ',
+    damage: 1.2,
+    fireRate: 180,
+    bulletSpeed: 10,
+    bulletCount: 1,
+    spread: 0,
+    pattern: 'wave',
+    waveAmp: 30,
+    waveFreq: 0.15,
+    color: '#ff66aa',
+    unlockLevel: 2
   },
   tripleShot: {
     id: 'tripleShot',
@@ -32,58 +49,97 @@ export const WEAPON_TYPES = {
     fireRate: 280,
     bulletSpeed: 11,
     bulletCount: 3,
-    spread: 0.35,
+    spread: 0.4,
+    pattern: 'normal',
     color: '#ff6666',
-    unlockLevel: 2
-  },
-  spiritBell: {
-    id: 'spiritBell',
-    name: '死霊のベル',
-    description: '全方位に8発発射',
-    damage: 1,
-    fireRate: 500,
-    bulletSpeed: 8,
-    bulletCount: 8,
-    spread: Math.PI * 2,
-    color: '#ffcc00',
     unlockLevel: 3
+  },
+  spiralShot: {
+    id: 'spiralShot',
+    name: '螺旋キャンディ',
+    description: '螺旋状に広がる弾',
+    damage: 0.8,
+    fireRate: 100,
+    bulletSpeed: 8,
+    bulletCount: 2,
+    spread: 0,
+    pattern: 'spiral',
+    spiralSpeed: 0.2,
+    color: '#aa66ff',
+    unlockLevel: 4
   },
   holyFire: {
     id: 'holyFire',
     name: '聖なる炎',
-    description: '高威力の貫通弾',
-    damage: 3,
-    fireRate: 400,
-    bulletSpeed: 14,
+    description: '敵を追尾する貫通弾',
+    damage: 2,
+    fireRate: 350,
+    bulletSpeed: 9,
     bulletCount: 1,
     spread: 0,
+    pattern: 'homing',
+    homingStrength: 0.03,
     piercing: true,
     color: '#00ffff',
     unlockLevel: 5
   },
-  dualCane: {
-    id: 'dualCane',
-    name: '双魔キャンディ',
-    description: '2方向に高速連射',
+  burstCane: {
+    id: 'burstCane',
+    name: 'バーストキャンディ',
+    description: '3連バースト射撃',
     damage: 1,
-    fireRate: 120,
-    bulletSpeed: 13,
+    fireRate: 400,
+    bulletSpeed: 14,
+    bulletCount: 1,
+    spread: 0.1,
+    pattern: 'burst',
+    burstCount: 3,
+    burstDelay: 50,
+    color: '#ffaa00',
+    unlockLevel: 6
+  },
+  spiritBell: {
+    id: 'spiritBell',
+    name: '死霊のベル',
+    description: '全方位に波動弾',
+    damage: 1,
+    fireRate: 600,
+    bulletSpeed: 7,
+    bulletCount: 8,
+    spread: Math.PI * 2,
+    pattern: 'wave',
+    waveAmp: 15,
+    waveFreq: 0.1,
+    color: '#ffcc00',
+    unlockLevel: 7
+  },
+  dualSpiral: {
+    id: 'dualSpiral',
+    name: '双螺旋キャンディ',
+    description: '2方向に螺旋弾',
+    damage: 1.2,
+    fireRate: 150,
+    bulletSpeed: 10,
     bulletCount: 2,
-    spread: 0.2,
+    spread: Math.PI,
+    pattern: 'spiral',
+    spiralSpeed: 0.15,
     color: '#ff88ff',
-    unlockLevel: 4
+    unlockLevel: 8
   },
   snowStorm: {
     id: 'snowStorm',
     name: '暗黒吹雪',
-    description: '全方位に大量発射',
-    damage: 1,
-    fireRate: 700,
-    bulletSpeed: 7,
-    bulletCount: 16,
+    description: '全方位に追尾弾の嵐',
+    damage: 0.8,
+    fireRate: 800,
+    bulletSpeed: 6,
+    bulletCount: 12,
     spread: Math.PI * 2,
+    pattern: 'homing',
+    homingStrength: 0.02,
     color: '#aaaaff',
-    unlockLevel: 7
+    unlockLevel: 10
   }
 }
 
