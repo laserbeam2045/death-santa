@@ -199,12 +199,14 @@ export function useWeapons() {
           break
 
         case 'spiral':
-          // Spiral outward
+          // Spiral outward - rotate while moving in base direction
           bullet.angle += bullet.spiralSpeed
-          bullet.vx = Math.cos(bullet.angle) * bullet.speed
-          bullet.vy = Math.sin(bullet.angle) * bullet.speed
-          bullet.x += bullet.vx
-          bullet.y += bullet.vy
+          // Move in base direction + spiral offset
+          const spiralRadius = bullet.time * 0.3
+          const spiralX = Math.cos(bullet.angle) * spiralRadius * 0.5
+          const spiralY = Math.sin(bullet.angle) * spiralRadius * 0.5
+          bullet.x += Math.cos(bullet.baseAngle) * bullet.speed * 0.7 + spiralX * 0.1
+          bullet.y += Math.sin(bullet.baseAngle) * bullet.speed * 0.7 + spiralY * 0.1
           break
 
         case 'homing':
@@ -240,11 +242,13 @@ export function useWeapons() {
           bullet.y += bullet.vy
       }
 
+      // Remove if out of bounds or too old
       if (
         bullet.x < -margin ||
         bullet.x > gameWidth + margin ||
         bullet.y < -margin ||
-        bullet.y > gameHeight + margin
+        bullet.y > gameHeight + margin ||
+        bullet.time > 300
       ) {
         bullets.splice(i, 1)
       }
